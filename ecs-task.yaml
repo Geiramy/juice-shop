@@ -12,9 +12,9 @@ Resources:
     Properties: 
       ContainerDefinitions: 
         - 
-          Name: "isentestaws"
+          Name: "Juice-shop"
           Image: 
-            Ref: 503259967594
+            Ref: ImageName
           Cpu: "10"
           Memory: "200"
           PortMappings: 

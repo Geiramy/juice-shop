@@ -1,6 +1,12 @@
 language: node_js
 node_js:
   - 11
+  
+addons:
+  sonarcloud:
+    organization: "geiramy-github" # the key of the org you chose at step #3
+    token:
+      secure: "$SONAR_TOKEN" # encrypted value of your token
 
 env:
   - IMAGE_NAME=503259967594.dkr.ecr.us-east-2.amazonaws.com/juice-shop:latest
@@ -8,7 +14,8 @@ services:
   - docker
 
 script:
-  - echo 'Use Docker!'
+  - npm test
+  - sonar-scanner  -Dsonar.projectKey=3r1co_juice-shop -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.javascript.lcov.reportPaths=./build/reports/coverage/server-tests/lcov.info
 
 after_success:
   - pip install --user awscli
@@ -18,11 +25,5 @@ after_success:
   - aws cloudformation deploy --template-file ./ecs-task.yaml --stack-name ecs-deployment --region us-east-2 --parameter-override ImageName=$IMAGE_NAME
   - aws cloudformation update-stack --template-body file://./ecs-task.yaml --stack-name ecs-deployment --region us-east-2 --parameters "ParameterKey=ImageName,ParameterValue=$IMAGE_NAME"
 
-addons:
-  sonarcloud:
-    organization: "geiramy-github" # the key of the org you chose at step #3
-    token:
-      secure: "$SONAR_TOKEN" # encrypted value of your token
-script:
-  # other script steps might be done before running the actual analysis
-  - sonar-scanner
+
+

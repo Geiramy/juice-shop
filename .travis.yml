@@ -15,7 +15,7 @@ services:
 
 script:
   - npm test
-  - sonar-scanner  -Dsonar.projectKey=3r1co_juice-shop -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.javascript.lcov.reportPaths=./build/reports/coverage/server-tests/lcov.info
+  - sonar-scanner  -Dsonar.projectKey=Geiramy_juice-shop -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.javascript.lcov.reportPaths=./build/reports/coverage/server-tests/lcov.info
 
 after_success:
   - pip install --user awscli

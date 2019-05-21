@@ -96,7 +96,7 @@ script:
 after_success:
   - pip install --user awscli
   - eval $(aws ecr get-login --region us-east-2 --no-include-email)
-  - docker build -t isentest .
+  - docker build -t juice-shop .
   - docker tag juice-shop:latest 503259967594.dkr.ecr.us-east-2.amazonaws.com/juice-shop:latest
   - docker push 503259967594.dkr.ecr.us-east-2.amazonaws.com/juice-shop:latest
 

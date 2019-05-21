@@ -9,7 +9,7 @@ addons:
       secure: "$SONAR_TOKEN" # encrypted value of your token
 
 env:
-  - IMAGE_NAME=503259967594.dkr.ecr.us-east-2.amazonaws.com/juice-shop:latest
+  - IMAGE_NAME=503259967594.dkr.ecr.us-east-2.amazonaws.com/juice-shop:1.0-$TRAVIS_BUILD_NUMBER
 services:
   - docker
 
